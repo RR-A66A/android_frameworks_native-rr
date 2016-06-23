@@ -134,6 +134,10 @@ typedef enum OMX_INDEXTYPE {
     OMX_IndexParamAudioSmv,                 /**< reference: OMX_AUDIO_PARAM_SMVTYPE */
     OMX_IndexParamAudioVorbis,              /**< reference: OMX_AUDIO_PARAM_VORBISTYPE */
     OMX_IndexParamAudioFlac,                /**< reference: OMX_AUDIO_PARAM_FLACTYPE */
+#ifdef MTK_HARDWARE
+    OMX_IndexParamAudioRaw,
+    OMX_IndexParamAudioWmaProfile,
+#endif
 
     OMX_IndexConfigAudioMidiImmediateEvent, /**< reference: OMX_AUDIO_CONFIG_MIDIIMMEDIATEEVENTTYPE */
     OMX_IndexConfigAudioMidiControl,        /**< reference: OMX_AUDIO_CONFIG_MIDICONTROLTYPE */
@@ -261,7 +265,61 @@ typedef enum OMX_INDEXTYPE {
        to 0x7FFFFFFE.  This range is not broken out by vendor, so
        private indexes are not guaranteed unique and therefore should
        only be sent to the appropriate component. */
+#ifdef MTK_HARDWARE 
+    //Bruce Hsu 20120416 Rename index enum
+    //qian 2011-09-26
+    OMX_IndexVendorMtkOmxVdecTimeSource = 0x7F000001,
 
+    OMX_IndexVendorMtkOmxVdecPriorityAdjustment,
+    OMX_IndexVendorMtkOmxVdecVideoSpecQuerySupported,
+
+    // Morris Yang 20111125 for ICS
+    OMX_GoogleAndroidIndexEnableAndroidNativeBuffers,
+    OMX_GoogleAndroidIndexUseAndroidNativeBuffer,
+    OMX_GoogleAndroidIndexGetAndroidNativeBufferUsage,
+    OMX_GoogleAndroidIndexStoreMetaDataInBuffers,   // Morris Yang 20120214 add for live effect recording
+    OMX_GoogleAndroidIndexPrepareForAdaptivePlayback,
+    OMX_IndexVendorMtkOmxPartialFrameQuerySupported,
+
+    OMX_IndexVendorMtkOmxVdecThumbnailMode,
+    OMX_IndexVendorMtkOmxVdecSeekMode,
+    OMX_IndexVendorMtkOmxVdecSwitchBwTVout,
+
+    OMX_IndexVendorMtkOmxVencSetForceIframe,
+    OMX_IndexVendorMtkOmxVencSetTimelapseMode,
+    OMX_IndexVendorMtkOmxVencSetWhiteboardEffectMode,
+    OMX_IndexVendorMtkOmxVencSetMCIMode,
+
+    OMX_IndexVendorMtkOmxVdecConcealmentLevel,
+    OMX_IndexVendorMtkOmxVdecStreamingMode,
+    OMX_IndexVendorMtkMP3Decode,
+    OMX_IndexVendorMtkOmxVdec3DVideoPlayback,
+    OMX_IndexVendorMtkOmxVenc3DVideoRecode,
+    OMX_IndexVendorMtkOmxVdecGetAspectRatio,
+    OMX_IndexVendorMtkOmxVdecGetCropInfo, 
+    OMX_IndexVendorMtkOmxVideoUseIonBuffer,
+    OMX_IndexVendorMtkOmxVencSetIInterval,
+    OMX_IndexVendorMtkOmxVencSkipFrame,
+    OMX_IndexVendorMtkOmxVdecFixedMaxBuffer,
+    OMX_IndexVendorMtkOmxVencDrawBlack,     //for Miracast test case SIGMA 5.1.11 workaround
+    OMX_IndexVendorMtkOmxVdecNoReorderMode,
+    OMX_IndexVendorMtkOmxVideoSetClientLocally,
+    OMX_IndexVendorMtkOmxVdecSkipReferenceCheckMode, // Cheng-Jung 20131010 Skip reference check
+    OMX_IndexVendorMtkOmxVencSetScenario,   //for Live photo (set venc scenario)
+
+    //Gary Wu add for ACodec color convert to get MVA addrs
+    //OMX_IndexVendorMtkOmxVdecACodecColorConvertGetMVAAddr = 0x7F0FF001,
+    OMX_IndexVendorMtkOmxVdecACodecColorConvertMode = 0x7F0FF002,
+    //add for MediaCodec encode with input data format is RGB
+    OMX_IndexVendorMtkOmxVdecACodecEncodeRGB2YUVMode = 0x7F0FF101,
+
+    // ginny add for AIV
+    OMX_IndexVendorMtkOmxAIVConfigSurface,
+    OMX_IndexVendorMtkOmxAIVEncrypMeta,
+    OMX_IndexVendorMtkOmxAIVAC3Param,
+    OMX_IndexVendorMtkOmxAIVExtraDataFlag = 0x7f100004,
+    OMX_IndexVendorMtkOmxAIVEXTIndexObject = 0x7f10000B,
+#endif
     OMX_IndexMax = 0x7FFFFFFF
 
 } OMX_INDEXTYPE;
